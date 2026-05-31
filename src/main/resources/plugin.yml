@@ -1,0 +1,12 @@
+name: EchoingDeaths
+version: 1.0.0
+main: in.potenfyr.echoingdeaths.EchoingDeathsPlugin
+api-version: '1.21'
+
+author: Potenfyr
+
+permissions:
+
+  echoingdeaths.bypass:
+    description: Immune to echoing death effects
+    default: op
