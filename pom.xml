@@ -8,7 +8,7 @@
 
     <groupId>in.potenfyr</groupId>
     <artifactId>EchoingDeaths</artifactId>
-    <version>1.0.0</version>
+    <version>0.1.0-ALPHA</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

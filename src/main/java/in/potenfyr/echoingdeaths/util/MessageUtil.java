@@ -97,7 +97,7 @@ public class MessageUtil {
     /**
      * Converts color codes.
      */
-    private static String color(String text) {
+    public static String color(String text) {
 
         return ChatColor.translateAlternateColorCodes(
                 '&',

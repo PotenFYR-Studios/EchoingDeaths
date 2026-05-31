@@ -3,6 +3,7 @@ package in.potenfyr.echoingdeaths;
 import in.potenfyr.echoingdeaths.listener.DeathListener;
 import in.potenfyr.echoingdeaths.manager.EffectManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import in.potenfyr.echoingdeaths.command.EchoingDeathsCommand;
 
 public class EchoingDeathsPlugin extends JavaPlugin {
 
@@ -22,6 +23,10 @@ public class EchoingDeathsPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(
                 new DeathListener(this),
                 this
+        );
+
+        getCommand("echoingdeaths").setExecutor(
+                new EchoingDeathsCommand(this)
         );
 
         getLogger().info("EchoingDeaths enabled.");

@@ -22,6 +22,9 @@ public class DeathListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
 
+        /*
+         * Plugin disabled
+         */
         if (!plugin.getConfig()
                 .getBoolean("settings.enabled")) {
             return;
@@ -31,17 +34,33 @@ public class DeathListener implements Listener {
 
         World world = dead.getWorld();
 
+        /*
+         * Ignored worlds
+         */
         if (plugin.getConfig()
                 .getStringList("settings.ignored-worlds")
                 .contains(world.getName())) {
             return;
         }
 
-        EntityDamageEvent lastDamage =
-                dead.getLastDamageCause();
+        /*
+         * Get actual Bukkit damage cause dynamically
+         *
+         * Example:
+         * FIRE
+         * FALL
+         * DROWNING
+         * SONIC_BOOM
+         * HOT_FLOOR
+         * etc.
+         */
+        String mappedCause = mapCause(
+                dead.getLastDamageCause()
+        );
 
-        String mappedCause = mapCause(lastDamage);
-
+        /*
+         * Load configured effect data
+         */
         DeathEffectData data =
                 plugin.getEffectManager()
                         .getEffectData(mappedCause);
@@ -50,42 +69,72 @@ public class DeathListener implements Listener {
                 plugin.getConfig()
                         .getDouble("settings.radius");
 
-        for (Player nearby :
-                world.getPlayers()) {
+        /*
+         * Affect nearby players
+         */
+        for (Player nearby : world.getPlayers()) {
 
+            /*
+             * Ignore dead player
+             */
             if (nearby.equals(dead)) {
                 continue;
             }
 
+            /*
+             * Radius check
+             */
             if (nearby.getLocation()
                     .distance(dead.getLocation()) > radius) {
                 continue;
             }
 
+            /*
+             * Permission bypass
+             */
             if (nearby.hasPermission(
                     "echoingdeaths.bypass")) {
                 continue;
             }
 
+            /*
+             * Creative mode handling
+             */
             if (!plugin.getConfig()
                     .getBoolean("settings.affect-creative")
                     && nearby.getGameMode() == GameMode.CREATIVE) {
                 continue;
             }
 
+            /*
+             * Spectator mode handling
+             */
             if (!plugin.getConfig()
                     .getBoolean("settings.affect-spectator")
                     && nearby.getGameMode() == GameMode.SPECTATOR) {
                 continue;
             }
 
+            /*
+             * Apply effects
+             */
             plugin.getEffectManager()
                     .applyEffects(nearby, data);
 
-            sendEffects(dead, nearby, data);
+            /*
+             * Send messages
+             */
+            sendEffects(
+                    dead,
+                    nearby,
+                    data
+            );
         }
     }
 
+    /**
+     * Sends chat/actionbar/title messages.
+     */
     private void sendEffects(
             Player dead,
             Player nearby,
@@ -94,6 +143,9 @@ public class DeathListener implements Listener {
 
         String cause = data.getDisplayName();
 
+        /*
+         * Chat messages
+         */
         if (plugin.getConfig()
                 .getBoolean("display.chat-message")) {
 
@@ -103,18 +155,18 @@ public class DeathListener implements Listener {
 
                 MessageUtil.sendChat(
                         nearby,
-                        line.replace(
-                                        "%player%",
-                                        dead.getName()
-                                )
-                                .replace(
-                                        "%cause%",
-                                        cause
-                                )
+                        MessageUtil.replacePlaceholders(
+                                line,
+                                dead.getName(),
+                                cause
+                        )
                 );
             }
         }
 
+        /*
+         * Actionbar messages
+         */
         if (plugin.getConfig()
                 .getBoolean("display.actionbar-message")) {
 
@@ -124,37 +176,37 @@ public class DeathListener implements Listener {
 
                 MessageUtil.sendActionbar(
                         nearby,
-                        line.replace(
-                                        "%player%",
-                                        dead.getName()
-                                )
-                                .replace(
-                                        "%cause%",
-                                        cause
-                                )
+                        MessageUtil.replacePlaceholders(
+                                line,
+                                dead.getName(),
+                                cause
+                        )
                 );
             }
         }
 
+        /*
+         * Title messages
+         */
         if (plugin.getConfig()
                 .getBoolean("display.title-message")) {
 
-            String titleText =
+            String title =
                     plugin.getConfig()
                             .getString("messages.title.title");
 
-            String subtitleText =
+            String subtitle =
                     plugin.getConfig()
                             .getString("messages.title.subtitle");
 
-            titleText = MessageUtil.replacePlaceholders(
-                    titleText,
+            title = MessageUtil.replacePlaceholders(
+                    title,
                     dead.getName(),
                     cause
             );
 
-            subtitleText = MessageUtil.replacePlaceholders(
-                    subtitleText,
+            subtitle = MessageUtil.replacePlaceholders(
+                    subtitle,
                     dead.getName(),
                     cause
             );
@@ -162,68 +214,23 @@ public class DeathListener implements Listener {
             MessageUtil.sendTitle(
                     plugin,
                     nearby,
-                    titleText,
-                    subtitleText
+                    title,
+                    subtitle
             );
         }
     }
 
+    /**
+     * Dynamically maps Bukkit DamageCause enums.
+     * This allows ANY Bukkit death cause
+     * to work automatically from config.yml
+     */
     private String mapCause(EntityDamageEvent damage) {
 
         if (damage == null) {
             return "UNKNOWN";
         }
 
-        return switch (damage.getCause()) {
-
-            case FALL -> "FALL";
-
-            case LAVA -> "LAVA";
-
-            case FIRE, FIRE_TICK ->
-                    "FIRE";
-
-            case DROWNING ->
-                    "DROWNING";
-
-            case VOID ->
-                    "VOID";
-
-            case MAGIC ->
-                    "MAGIC";
-
-            case WITHER ->
-                    "WITHER";
-
-            case ENTITY_EXPLOSION,
-                 BLOCK_EXPLOSION ->
-                    "EXPLOSION";
-
-            case FREEZE ->
-                    "FREEZE";
-
-            case LIGHTNING ->
-                    "LIGHTNING";
-
-            case POISON ->
-                    "POISON";
-
-            case STARVATION ->
-                    "STARVATION";
-
-            case SUFFOCATION ->
-                    "SUFFOCATION";
-
-            case SONIC_BOOM ->
-                    "SONIC_BOOM";
-
-            case THORNS ->
-                    "THORNS";
-
-            case CONTACT ->
-                    "CONTACT";
-
-            default -> "UNKNOWN";
-        };
+        return damage.getCause().name();
     }
 }

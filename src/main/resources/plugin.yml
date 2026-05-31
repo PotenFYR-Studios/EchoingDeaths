@@ -1,12 +1,26 @@
 name: EchoingDeaths
-version: 1.0.0
+version: 0.1.0
 main: in.potenfyr.echoingdeaths.EchoingDeathsPlugin
 api-version: '1.21'
 
 author: Potenfyr
 
+commands:
+
+  echoingdeaths:
+    description: Main EchoingDeaths command
+    aliases:
+      - ed
+    usage: /echoingdeaths
+    permission: echoingdeaths.admin
+
 permissions:
 
+  echoingdeaths.admin:
+    default: op
+
+  echoingdeaths.reload:
+    default: op
+
   echoingdeaths.bypass:
-    description: Immune to echoing death effects
     default: op
