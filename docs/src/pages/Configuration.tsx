@@ -1,0 +1,727 @@
+import { DocsShell } from "../components/DocsShell";
+import { CodeBlock } from "../components/CodeBlock";
+import { type Heading } from "../data/pages";
+
+const HEADINGS: Heading[] = [
+  { id: "overview", label: "Overview", level: 2 },
+  { id: "settings", label: "settings", level: 2 },
+  { id: "display", label: "display", level: 2 },
+  { id: "messages", label: "messages", level: 2 },
+  { id: "effects", label: "effects", level: 2 },
+  { id: "fallback", label: "fallback", level: 2 },
+  { id: "full-default-config", label: "Full default config.yml", level: 2 },
+];
+
+/** The default config.yml, verbatim from src/main/resources/config.yml. */
+const DEFAULT_CONFIG = `# ============================================================
+#                       EchoingDeaths
+# ============================================================
+#
+# A lightweight Spigot/Paper/Purpur plugin that applies
+# temporary curse-like debuffs to nearby players whenever
+# someone dies.
+#
+# Designed for:
+# - Spigot
+# - Paper
+# - Purpur
+# - 1.21.x+
+#
+# ============================================================
+#                        SETTINGS
+# ============================================================
+#
+
+settings:
+
+  # Master toggle for the plugin.
+  enabled: true
+
+  # Radius around the dead player where nearby
+  # players will be affected.
+  radius: 14
+
+  # Whether players in creative mode should
+  # receive curse effects.
+  affect-creative: false
+
+  # Whether players in spectator mode should
+  # receive curse effects.
+  affect-spectator: false
+
+  # Worlds where the plugin should not work.
+  ignored-worlds:
+    - "example_world"
+
+#
+# ============================================================
+#                       DISPLAY SETTINGS
+# ============================================================
+#
+
+display:
+
+  # Send normal chat messages.
+  chat-message: true
+
+  # Send actionbar messages.
+  actionbar-message: true
+
+  # Send title/subtitle messages.
+  title-message: true
+
+  # Play sound effects.
+  sound-enabled: true
+
+  sound:
+
+    # Bukkit sound enum.
+    #
+    # You can find valid sounds here:
+    # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+    #
+    type: ENTITY_WARDEN_HEARTBEAT
+
+    volume: 1.0
+
+    pitch: 0.8
+
+#
+# ============================================================
+#                         MESSAGES
+# ============================================================
+#
+# Color Codes:
+#
+# &0 = Black
+# &1 = Dark Blue
+# &2 = Dark Green
+# &3 = Dark Aqua
+# &4 = Dark Red
+# &5 = Purple
+# &6 = Gold
+# &7 = Gray
+# &8 = Dark Gray
+# &9 = Blue
+# &a = Green
+# &b = Aqua
+# &c = Red
+# &d = Pink
+# &e = Yellow
+# &f = White
+#
+# Placeholders:
+#
+# %player% = Dead player
+# %cause%  = Death cause display name
+#
+# ============================================================
+#
+
+messages:
+
+  #
+  # Chat messages sent to affected players.
+  #
+  chat:
+    - "&4%player% died."
+    - "&cYou were cursed by the echo of their death."
+    - "&7Cause: &e%cause%"
+
+  #
+  # Actionbar message.
+  #
+  actionbar:
+    - "&cCursed by %player%'s death"
+
+  #
+  # Title settings.
+  #
+  title:
+
+    title: "&4Echoing Death"
+
+    subtitle: "&cYou feel a lingering curse..."
+
+    # Timing in ticks.
+    fade-in: 10
+
+    stay: 50
+
+    fade-out: 20
+
+#
+# ============================================================
+#                     DEATH EFFECTS
+# ============================================================
+#
+# Structure:
+#
+# EFFECT_NAME:
+#
+#   display-name:
+#     Readable cause name.
+#
+#   duration-seconds:
+#     Effect duration.
+#
+#   amplifier:
+#     Potion amplifier level.
+#     0 = Level I
+#     1 = Level II
+#     2 = Level III
+#
+#   potion-effects:
+#     Bukkit potion effect enums.
+#
+# Valid potion effects:
+# https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
+#
+# ============================================================
+#
+#
+# Valid damage causes:
+# https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
+
+
+effects:
+
+  FALL:
+
+    display-name: "Fall"
+
+    duration-seconds: 10
+
+    amplifier: 1
+
+    potion-effects:
+      - SLOWNESS
+      - WEAKNESS
+
+  LAVA:
+
+    display-name: "Lava"
+
+    duration-seconds: 12
+
+    amplifier: 1
+
+    potion-effects:
+      - WEAKNESS
+      - NAUSEA
+      - HUNGER
+
+  FIRE:
+
+    display-name: "Fire"
+
+    duration-seconds: 8
+
+    amplifier: 1
+
+    potion-effects:
+      - WEAKNESS
+      - HUNGER
+
+  DROWNING:
+
+    display-name: "Drowning"
+
+    duration-seconds: 10
+
+    amplifier: 1
+
+    potion-effects:
+      - MINING_FATIGUE
+      - SLOWNESS
+
+  VOID:
+
+    display-name: "Void"
+
+    duration-seconds: 8
+
+    amplifier: 0
+
+    potion-effects:
+      - DARKNESS
+      - BLINDNESS
+
+  MAGIC:
+
+    display-name: "Magic"
+
+    duration-seconds: 12
+
+    amplifier: 1
+
+    potion-effects:
+      - BLINDNESS
+      - WEAKNESS
+
+  WITHER:
+
+    display-name: "Wither"
+
+    duration-seconds: 10
+
+    amplifier: 1
+
+    potion-effects:
+      - WITHER
+      - HUNGER
+
+  EXPLOSION:
+
+    display-name: "Explosion"
+
+    duration-seconds: 8
+
+    amplifier: 1
+
+    potion-effects:
+      - NAUSEA
+      - WEAKNESS
+
+  FREEZE:
+
+    display-name: "Freezing"
+
+    duration-seconds: 12
+
+    amplifier: 1
+
+    potion-effects:
+      - SLOWNESS
+      - WEAKNESS
+
+  LIGHTNING:
+
+    display-name: "Lightning"
+
+    duration-seconds: 8
+
+    amplifier: 1
+
+    potion-effects:
+      - GLOWING
+      - NAUSEA
+
+  POISON:
+
+    display-name: "Poison"
+
+    duration-seconds: 12
+
+    amplifier: 1
+
+    potion-effects:
+      - POISON
+      - HUNGER
+
+  STARVATION:
+
+    display-name: "Starvation"
+
+    duration-seconds: 15
+
+    amplifier: 0
+
+    potion-effects:
+      - HUNGER
+      - WEAKNESS
+
+  SUFFOCATION:
+
+    display-name: "Suffocation"
+
+    duration-seconds: 10
+
+    amplifier: 1
+
+    potion-effects:
+      - BLINDNESS
+      - SLOWNESS
+
+  SONIC_BOOM:
+
+    display-name: "Sonic Boom"
+
+    duration-seconds: 8
+
+    amplifier: 1
+
+    potion-effects:
+      - DARKNESS
+      - WEAKNESS
+
+  THORNS:
+
+    display-name: "Thorns"
+
+    duration-seconds: 6
+
+    amplifier: 0
+
+    potion-effects:
+      - WEAKNESS
+
+  CONTACT:
+
+    display-name: "Sharp Contact"
+
+    duration-seconds: 6
+
+    amplifier: 0
+
+    potion-effects:
+      - POISON
+
+#
+# ============================================================
+#                       FALLBACK EFFECT
+# ============================================================
+#
+# Used when no mapped death cause exists.
+#
+# ============================================================
+#
+
+fallback:
+
+  display-name: "Unknown"
+
+  duration-seconds: 5
+
+  amplifier: 0
+
+  potion-effects:
+    - WEAKNESS`;
+
+/** Configuration reference: every real key from config.yml. */
+export function Configuration() {
+  return (
+    <DocsShell
+      pathname="/docs/configuration/"
+      pageId="configuration"
+      headings={HEADINGS}
+    >
+      <h1 className="grad-text">Configuration</h1>
+      <p>
+        EchoingDeaths generates <code>plugins/EchoingDeaths/config.yml</code> on
+        first boot with every setting below. Edit the file, then run{" "}
+        <code>/echoingdeaths reload</code>, no restart needed. Color codes use
+        the classic <code>&amp;a</code>–<code>&amp;f</code> style, and messages
+        accept <code>%player%</code> / <code>%cause%</code> placeholders.
+      </p>
+
+      <h2 id="settings">settings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>settings.enabled</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>true</code>
+            </td>
+            <td>Master toggle for the whole plugin.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>settings.radius</code>
+            </td>
+            <td>number</td>
+            <td>
+              <code>14</code>
+            </td>
+            <td>
+              Radius (blocks) around the dead player in which nearby players
+              get cursed.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>settings.affect-creative</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>false</code>
+            </td>
+            <td>Whether creative-mode players receive curse effects.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>settings.affect-spectator</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>false</code>
+            </td>
+            <td>Whether spectator-mode players receive curse effects.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>settings.ignored-worlds</code>
+            </td>
+            <td>string list</td>
+            <td>
+              <code>["example_world"]</code>
+            </td>
+            <td>Worlds where the plugin does nothing.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="display">display</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>display.chat-message</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>true</code>
+            </td>
+            <td>Send the <code>messages.chat</code> lines.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.actionbar-message</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>true</code>
+            </td>
+            <td>Send the <code>messages.actionbar</code> lines.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.title-message</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>true</code>
+            </td>
+            <td>Send the title + subtitle.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.sound-enabled</code>
+            </td>
+            <td>boolean</td>
+            <td>
+              <code>true</code>
+            </td>
+            <td>Play the curse sound.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.sound.type</code>
+            </td>
+            <td>Sound enum</td>
+            <td>
+              <code>ENTITY_WARDEN_HEARTBEAT</code>
+            </td>
+            <td>
+              Bukkit <code>Sound</code> enum name; invalid names are ignored.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.sound.volume</code>
+            </td>
+            <td>number</td>
+            <td>
+              <code>1.0</code>
+            </td>
+            <td>Sound volume.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>display.sound.pitch</code>
+            </td>
+            <td>number</td>
+            <td>
+              <code>0.8</code>
+            </td>
+            <td>Sound pitch.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="messages">messages</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>messages.chat</code>
+            </td>
+            <td>string list</td>
+            <td>3 lines</td>
+            <td>
+              Chat lines sent to each cursed player, in order. Supports{" "}
+              <code>%player%</code>, <code>%cause%</code>, color codes.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.actionbar</code>
+            </td>
+            <td>string list</td>
+            <td>1 line</td>
+            <td>Actionbar lines sent to each cursed player.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.title.title</code>
+            </td>
+            <td>string</td>
+            <td>
+              <code>&amp;4Echoing Death</code>
+            </td>
+            <td>Title text.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.title.subtitle</code>
+            </td>
+            <td>string</td>
+            <td>
+              <code>&amp;cYou feel a lingering curse...</code>
+            </td>
+            <td>Subtitle text.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.title.fade-in</code>
+            </td>
+            <td>int (ticks)</td>
+            <td>
+              <code>10</code>
+            </td>
+            <td>Title fade-in time.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.title.stay</code>
+            </td>
+            <td>int (ticks)</td>
+            <td>
+              <code>50</code>
+            </td>
+            <td>Title stay time.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>messages.title.fade-out</code>
+            </td>
+            <td>int (ticks)</td>
+            <td>
+              <code>20</code>
+            </td>
+            <td>Title fade-out time.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="effects">effects</h2>
+      <p>
+        Each key under <code>effects</code> is a Bukkit{" "}
+        <code>DamageCause</code> enum name; each value is a curse with this
+        schema:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>display-name</code>
+            </td>
+            <td>string</td>
+            <td>
+              Readable curse name, substituted into <code>%cause%</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>duration-seconds</code>
+            </td>
+            <td>int</td>
+            <td>
+              How long each potion effect lasts (converted to ticks
+              server-side).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>amplifier</code>
+            </td>
+            <td>int</td>
+            <td>Potion amplifier: 0 = Level I, 1 = Level II, 2 = Level III.</td>
+          </tr>
+          <tr>
+            <td>
+              <code>potion-effects</code>
+            </td>
+            <td>string list</td>
+            <td>
+              Bukkit <code>PotionEffectType</code> enum names; invalid entries
+              are skipped.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The sixteen default curses and their values are catalogued on the{" "}
+        <a href="/docs/curses/">Curses page</a>.
+      </p>
+
+      <h2 id="fallback">fallback</h2>
+      <p>
+        Uses the same schema as an <code>effects</code> entry and applies to any
+        death whose cause has no mapping (default: <code>WEAKNESS</code> I for 5
+        seconds, displayed as "Unknown").
+      </p>
+
+      <h2 id="full-default-config">Full default config.yml</h2>
+      <p>
+        The complete file generated on first boot. Copy it as a starting
+        point:
+      </p>
+      <CodeBlock lang="yaml" code={DEFAULT_CONFIG} />
+    </DocsShell>
+  );
+}

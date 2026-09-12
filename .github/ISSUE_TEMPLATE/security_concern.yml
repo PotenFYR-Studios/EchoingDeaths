@@ -1,0 +1,22 @@
+name: 🔒 Security concern
+description: Non-sensitive security question about how the plugin works.
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **If you have a real vulnerability to report, do not use this public
+        template.** Follow [SECURITY.md](../blob/master/SECURITY.md) and use a
+        GitHub private advisory or email instead.
+  - type: textarea
+    id: concern
+    attributes:
+      label: Your question or concern
+      description: e.g. "Can the bypass permission be abused by non-ops?"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Server setup, permissions plugin, config, whatever is relevant.

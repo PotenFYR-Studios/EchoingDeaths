@@ -1,241 +1,115 @@
+<!-- markdownlint-disable -->
 
+<div align="center">
 
-<!-- ========================================================= -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8b5cf6,50:ec4899,100:f97316&height=220&section=header&text=EchoingDeaths&fontSize=52&fontColor=ffffff&fontAlignY=34&animation=twinkling" width="100%" alt="EchoingDeaths Banner"/>
 
-<!--                      BANNER IMAGE                         -->
-
-<!-- ========================================================= -->
-
-<p align="center">
-  <img src="./res/banner_ed.png" alt="EchoingDeaths Banner">
-</p>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=8B5CF6&center=true&vCenter=true&width=800&lines=Death+leaves+a+curse+behind.;Every+death+echoes+to+nearby+players.;Spigot+%C2%B7+Paper+%C2%B7+Purpur+%C2%B7+MC+1.21%2B)](https://github.com/PotenFYR-Studios/EchoingDeaths)
 
 <p align="center">
-  <b>Death leaves a curse behind.</b>
+  <a href="https://modrinth.com/plugin/echoing-deaths"><img src="https://img.shields.io/badge/Modrinth-echoing--deaths-1bd96a?style=for-the-badge&logo=modrinth&logoColor=white&labelColor=1c1e26" alt="Modrinth"/></a>
+  <a href="https://echoingdeaths.docs.potenfyr.in"><img src="https://img.shields.io/badge/Docs-echoingdeaths.docs.potenfyr.in-8b5cf6?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26" alt="Docs"/></a>
+  <a href="https://discord.com/invite/zUaN2FPBec"><img src="https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=1c1e26" alt="Discord"/></a>
+  <a href="https://github.com/PotenFYR-Studios/EchoingDeaths"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=1c1e26" alt="GitHub"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0%20%2B%20Commons%20Clause-f97316?style=for-the-badge&logo=apache&logoColor=white&labelColor=1c1e26" alt="License"/></a>
+  <a href="https://github.com/PotenFYR-Studios/EchoingDeaths"><img src="https://komarev.com/ghpvc/?username=PotenFYR-Studios-EchoingDeaths&color=ec4899&style=for-the-badge&label=PROFILE+VIEWS&labelColor=1c1e26" alt="Profile views" /></a>
 </p>
 
-<p align="center">
-
-  <img alt="Minecraft" src="https://img.shields.io/badge/Minecraft-26.1+-brightgreen">
-
-  <img alt="Loader" src="https://img.shields.io/badge/Platform-Spigot%20%7C%20Paper%20%7C%20Purpur-orange">
-
-</p>
+</div>
 
 ---
 
-# ✨ Features
+**EchoingDeaths** is a Minecraft death plugin that adds immersive death-based curses to nearby players. Whenever a player dies, everyone standing close by receives temporary debuffs themed by the cause of death: a lava death nauseates witnesses, a void death blinds them, the Warden's sonic boom leaves them in darkness. Lightweight, Bukkit-only, NMS-free, fully configurable.
 
-EchoingDeaths adds immersive death-based curses to nearby players.
+## ✨ Features
 
-Whenever a player dies, nearby players receive temporary debuffs themed around the cause of death.
+- 🔮 **16 curses out of the box**: falls, lava, fire, drowning, void, magic, wither, explosions, freezing, lightning, poison, starvation, suffocation, sonic boom, thorns and contact
+- 🧭 **Any damage cause**: curse mapping is dynamic, add a section for *any* Bukkit `DamageCause` (e.g. `HOT_FLOOR`, `DRAGON_BREATH`, `PROJECTILE`) and it just works
+- 📣 **Rich feedback**: configurable chat, actionbar and title messages with `%player%` / `%cause%` placeholders and color codes, plus a configurable sound
+- 🌍 **World & mode aware**: per-world disabling, creative/spectator handling, permission bypass
+- ⚡ **Performance-friendly**: Bukkit-only, no NMS, no reflection, no packet manipulation
 
-Examples:
+## 📦 Installation
 
-* 🔥 Burn deaths spread weakness and hunger
-* 💥 Explosions cause nausea
-* 🌊 Drowning inflicts fatigue
-* 🕳 Void deaths spread darkness
-* ⚡ Lightning deaths shock nearby players
+1. Download the jar from [Modrinth](https://modrinth.com/plugin/echoing-deaths)
+2. Drop it into your server's `/plugins/` folder
+3. Restart the server: `plugins/EchoingDeaths/config.yml` is generated on first boot
+4. Tune the config, then run `/echoingdeaths reload`
 
----
+Works on **Spigot**, **Paper** and **Purpur**, Minecraft **1.21+** (`api-version: '1.21'`, built against the Spigot 1.21.8 API, Java 21). Full guide: [Getting Started](https://echoingdeaths.docs.potenfyr.in/docs/getting-started/).
 
-# ⚙️ Supported Platforms
+## 📖 Documentation
 
-* Spigot
-* Paper
-* Purpur
+Full documentation lives at **[echoingdeaths.docs.potenfyr.in](https://echoingdeaths.docs.potenfyr.in)**:
 
----
+| Page | Contents |
+| --- | --- |
+| [Curses](https://echoingdeaths.docs.potenfyr.in/docs/curses/) | Every curse: trigger cause, effects, duration, amplifier |
+| [Configuration](https://echoingdeaths.docs.potenfyr.in/docs/configuration/) | Complete `config.yml` reference |
+| [Commands & Permissions](https://echoingdeaths.docs.potenfyr.in/docs/commands-permissions/) | `/echoingdeaths` usage and permission nodes |
+| [FAQ](https://echoingdeaths.docs.potenfyr.in/docs/faq/) | Common questions and troubleshooting |
 
-# 🧩 Supported Versions
+## 🛠 Commands
 
-* 26.1.x+
-* Forward compatible toward future Bukkit revisions
+| Command | Description |
+| --- | --- |
+| `/echoingdeaths` · `/ed` | Base command, prints the help menu |
+| `/echoingdeaths reload` | Reload `config.yml` |
+| `/echoingdeaths info` | Show plugin information |
+| `/echoingdeaths test <cause>` | Apply a curse to yourself to preview it |
 
----
+## 🔐 Permissions
 
-# 📦 Installation
+| Permission | Default | Description |
+| --- | --- | --- |
+| `echoingdeaths.admin` | `op` | Access to `/echoingdeaths` |
+| `echoingdeaths.reload` | `op` | Reload the plugin config |
+| `echoingdeaths.bypass` | `op` | Immune to curse effects |
 
-1. Download the plugin jar
-2. Place it into:
+## ⚙️ Configuration
 
-```text
-/plugins/
-```
-
-3. Restart your server
-4. Configure:
-
-```text
-plugins/EchoingDeaths/config.yml
-```
-
----
-
-# 🛠 Commands
-
-| Command                       | Description             |
-| ----------------------------- | ----------------------- |
-| `/echoingdeaths reload`       | Reload configuration    |
-| `/echoingdeaths info`         | Show plugin information |
-| `/echoingdeaths test <cause>` | Test death effects      |
-| `/ed`                         | Command alias           |
-
----
-
-# 🔐 Permissions
-
-| Permission             | Description             |
-| ---------------------- | ----------------------- |
-| `echoingdeaths.admin`  | Access admin commands   |
-| `echoingdeaths.reload` | Reload plugin config    |
-| `echoingdeaths.bypass` | Immune to curse effects |
-
----
-
-# ☠ Death Causes
-
-EchoingDeaths supports configurable Bukkit death causes.
-
-Examples:
+Everything lives in one `config.yml`: radius, ignored worlds, display channels, messages, sounds and each curse's potion effects, duration and amplifier:
 
 ```yaml
 FIRE:
-FIRE_TICK:
-LAVA:
-FALL:
-VOID:
-SONIC_BOOM:
-DROWNING:
-FREEZE:
-EXPLOSION:
-LIGHTNING:
-MAGIC:
-WITHER:
-HOT_FLOOR:
-DRAGON_BREATH:
-PROJECTILE:
-ENTITY_ATTACK:
-```
-
-All effects are configurable directly inside:
-
-```text
-config.yml
-```
-
----
-
-# 🧪 Example Effect Configuration
-
-```yaml
-FIRE:
-
   display-name: "Fire"
-
   duration-seconds: 8
-
-  amplifier: 1
-
+  amplifier: 1          # 0 = Level I, 1 = Level II, 2 = Level III
   potion-effects:
     - WEAKNESS
     - HUNGER
 ```
 
----
+See the [Configuration Reference](https://echoingdeaths.docs.potenfyr.in/docs/configuration/) for every key and the [Curses page](https://echoingdeaths.docs.potenfyr.in/docs/curses/) for all default values.
 
-# 💬 Display Features
+## 🏗 Building from source
 
-EchoingDeaths supports:
+The project is plain Maven with no codegen steps:
 
-* Chat messages
-* Actionbar messages
-* Titles
-* Sounds
-
-All fully configurable.
-
----
-
-# 🌍 World Support
-
-Supports:
-
-* Per-world disabling
-* Creative bypass
-* Spectator bypass
-* Permission bypasses
-
----
-
-# ⚡ Performance
-
-Designed to be:
-
-* Lightweight
-* Async-safe
-* NMS-free
-* Bukkit-only
-* Multi-loader compatible
-
-No packet manipulation.
-No version-specific internals.
-
----
-
-# 📁 Configuration
-
-The plugin automatically generates:
-
-```text
-plugins/EchoingDeaths/config.yml
+```bash
+git clone https://github.com/PotenFYR-Studios/EchoingDeaths.git
+cd EchoingDeaths
+mvn clean package   # requires JDK 21+; jar lands in target/
 ```
 
-with fully documented settings.
+## 🤝 Contributing
 
----
+Issues and pull requests are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions, docs development and PR guidelines. Found a bug or have a feature idea? [Open an issue](https://github.com/PotenFYR-Studios/EchoingDeaths/issues/new/choose).
 
-# 🔧 Developer Notes
+## 🔒 Security
 
-Built using:
+Please report vulnerabilities responsibly; see [SECURITY.md](SECURITY.md). Do not open public issues for security reports.
 
-* Java 21
-* Spigot API
-* Pure Bukkit architecture
+## 📜 License
 
-No:
+Licensed under the **Apache License 2.0 with the Commons Clause**: free to fork, modify, use and build products or services around it, but the software itself may not be sold as a paid product. See the [LICENSE](https://github.com/PotenFYR-Studios/EchoingDeaths/blob/master/LICENSE) file for details; the LICENSE file is authoritative for this repository.
 
-* NMS
-* Reflection
-* CraftBukkit internals
+<!-- markdownlint-enable -->
 
-This improves:
+<div align="center">
 
-* stability
-* compatibility
-* forward support
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:f97316,50:ec4899,100:8b5cf6&height=120&section=footer&text=Made%20with%20%E2%9D%A4%EF%B8%8F%20by%20PotenFYR%20Studios&fontSize=22&fontColor=ffffff&animation=twinkling" width="100%" alt="footer"/>
 
----
+</div>
 
-# ❤️ Planned Features
-
-* Custom particles
-* Per-effect sounds
-* PlaceholderAPI support
-* Region support
-* Totem interaction support
-* Custom effect stacking
-* MythicMobs compatibility
-
----
-
-# 📜 License
-
-MIT License
-
----
-
-# 👤 Author
-
-Developed by **Potenfyr**
+<!-- markdownlint-enable -->

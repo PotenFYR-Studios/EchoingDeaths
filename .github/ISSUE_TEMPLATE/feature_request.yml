@@ -1,0 +1,35 @@
+name: 💡 Feature request
+description: Suggest an idea or improvement for EchoingDeaths.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What are you trying to achieve? What feels missing today?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What should happen? Config format ideas welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: relevance
+    attributes:
+      label: Relevance
+      options:
+        - label: This fits the plugin's scope (death-based curses for nearby players)
+        - label: I checked the roadmap/FAQ in case this is already planned
+  - type: markdown
+    attributes:
+      value: |
+        Ideas already on the roadmap: custom particles, per-effect sounds,
+        PlaceholderAPI support, region support, totem interaction, effect
+        stacking, MythicMobs compatibility.

@@ -1,0 +1,63 @@
+name: 🐛 Bug report
+description: Something in EchoingDeaths is broken or behaves unexpectedly.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug! Please fill in the details
+        below: server/software versions are the number one missing piece.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Server platform
+      options:
+        - Spigot
+        - Paper
+        - Purpur
+        - Other (please specify)
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Minecraft & plugin version
+      description: "e.g. MC 1.21.8, EchoingDeaths 0.1.0 (see `/echoingdeaths info`)"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Die by …
+        2. Nearby player at … blocks
+        3. …
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant config.yml section
+      description: Paste only the parts you changed or that relate to the bug.
+      render: yaml
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console / log output
+      render: text
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues for duplicates
+        - label: This happens with the default config (or I included my changes)
+        - label: This is not a security concern (those go through SECURITY.md)

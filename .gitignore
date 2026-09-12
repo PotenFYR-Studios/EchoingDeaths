@@ -117,3 +117,7 @@ Testserver
 CLAUDE.md
 .rtk
 .plan
+
+# Docs site (docs/) build artifacts
+docs/node_modules/
+docs/dist/

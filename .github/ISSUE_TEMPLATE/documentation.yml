@@ -1,0 +1,27 @@
+name: 📄 Documentation issue
+description: Something in the README or docs site is wrong, unclear or missing.
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: location
+    attributes:
+      label: Where is the problem?
+      options:
+        - Docs site (echoingdeaths.docs.potenfyr.in)
+        - README
+        - config.yml comments
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page or section
+      description: URL or heading, e.g. /docs/configuration/#messages
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: What does it say, and what should it say?
+    validations:
+      required: true

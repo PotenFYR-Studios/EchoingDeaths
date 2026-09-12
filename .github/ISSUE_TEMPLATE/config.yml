@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / help
+    url: https://discord.com/invite/zUaN2FPBec
+    about: "Fastest way to get help: ask in the PotenFYR Studios support Discord."
+  - name: Documentation
+    url: https://echoingdeaths.docs.potenfyr.in
+    about: Install guide, curse catalog, configuration reference and FAQ.
+  - name: Plugin downloads
+    url: https://modrinth.com/plugin/echoing-deaths
+    about: Official EchoingDeaths releases on Modrinth.

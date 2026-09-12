@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://echoingdeaths.docs.potenfyr.in/sitemap.xml

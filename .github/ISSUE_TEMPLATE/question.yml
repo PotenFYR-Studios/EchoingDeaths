@@ -1,0 +1,21 @@
+name: ❓ Question
+description: Ask how something in EchoingDeaths works.
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: input
+    id: docs
+    attributes:
+      label: Docs pages you already checked
+      description: e.g. /docs/curses/, /docs/faq/
+  - type: markdown
+    attributes:
+      value: |
+        Tip: the [FAQ](https://echoingdeaths.docs.potenfyr.in/docs/faq/) and the
+        [support Discord](https://discord.com/invite/zUaN2FPBec) are usually
+        faster for setup help.
