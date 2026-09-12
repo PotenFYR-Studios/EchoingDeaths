@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SITE } from "../data/pages";
+import { SITE, withBase } from "../data/pages";
 
 const NAV = [
   { label: "Docs", href: "/docs/" },
@@ -25,13 +25,13 @@ export function SiteHeader({ pathname }: { pathname: string }) {
       style={{ height: "var(--header-h)", padding: "0 20px" }}
     >
       <a
-        href="/"
+        href={withBase("/")}
         className="flex items-center gap-[9px] text-white"
         style={{ fontWeight: 650, fontSize: "0.95em" }}
         aria-label="EchoingDeaths home"
       >
         <img
-          src="/favicon.png"
+          src={withBase("/favicon.png")}
           alt=""
           width={24}
           height={24}
@@ -51,7 +51,7 @@ export function SiteHeader({ pathname }: { pathname: string }) {
           return (
             <a
               key={n.href}
-              href={n.href}
+              href={withBase(n.href)}
               aria-current={active ? "page" : undefined}
               className="rounded-[7px] px-[9px] py-[5px] text-[0.84em] font-medium no-underline transition-colors"
               style={
@@ -98,7 +98,7 @@ export function SiteHeader({ pathname }: { pathname: string }) {
           {NAV.map((n) => (
             <a
               key={n.href}
-              href={n.href}
+              href={withBase(n.href)}
               className="rounded-lg px-3 py-2 text-sm no-underline"
               style={{ color: isNavActive(pathname, n.href) ? "#fff" : "var(--muted)" }}
               onClick={() => setOpen(false)}

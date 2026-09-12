@@ -74,9 +74,39 @@ export const STATIC_PAGES = [
   { id: "home", path: "/", title: "Home" },
 ] as const;
 
+
+const envBase: unknown = import.meta.env?.BASE_URL;
+
+/** Deploy base ("/" on a custom domain, "/EchoingDeaths/" on github.io
+ *  project pages): vite inlines BASE_URL in the client bundle; the process-env
+ *  fallback covers tooling that imports this module outside vite. */
+export const BASE: string =
+  typeof envBase === "string" ? envBase
+  : typeof process !== "undefined" ? process.env?.VITE_BASE ?? "/"
+  : "/";
+
+/** Prefix an in-site path with the deploy base. Idempotent, and a no-op for
+ *  anything not site-rooted, so call sites can wrap unconditionally. */
+export function withBase(p: string): string {
+  if (BASE !== "/" && (p === BASE || p.startsWith(BASE))) return p;
+  if (!p.startsWith("/")) return p;
+  return `${BASE}${p.slice(1)}`;
+}
+
+/** Strip the deploy base from a location pathname, yielding the canonical
+ *  in-site route used by the page tables above. */
+export function stripBase(p: string): string {
+  if (BASE !== "/") {
+    if (p === BASE) return "/";
+    if (p.startsWith(BASE)) return p.slice(BASE.length - 1);
+  }
+  return p;
+}
+
 /** Resolve the page id for the current location pathname. */
 export function pageIdForPath(pathname: string): string | null {
-  const p = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const raw = stripBase(pathname);
+  const p = raw.endsWith("/") ? raw : `${raw}/`;
   for (const d of DOC_PAGES) if (d.path === p) return d.id;
   for (const s of STATIC_PAGES) if (s.path === p) return s.id;
   return null;

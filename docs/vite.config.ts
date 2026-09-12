@@ -107,7 +107,7 @@ export const PAGES = [
 
 export default defineConfig({
   root: __dir,
-  base: "/",
+  base: process.env.VITE_BASE ?? "/",
   plugins: [react(), tailwindcss()],
   build: {
     outDir: "dist",

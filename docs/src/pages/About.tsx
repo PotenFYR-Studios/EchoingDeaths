@@ -1,6 +1,6 @@
 import { BookOpen, Download, Github, Globe, MessagesSquare } from "lucide-react";
 import { DotPattern, GlowOrb } from "../components/magicui";
-import { SITE } from "../data/pages";
+import { SITE, withBase } from "../data/pages";
 
 const LINKS = [
   {
@@ -121,7 +121,7 @@ export function About() {
             EchoingDeaths is free to use under the{" "}
             <strong>Apache License 2.0 with the Commons Clause</strong>,
             Copyright © 2026 PotenFYR Studios. The{" "}
-            <a href="/license/">license page</a> explains what that means in
+            <a href={withBase("/license/")}>license page</a> explains what that means in
             practice, and the{" "}
             <a href={`${SITE.repo}/blob/master/LICENSE`}>LICENSE file</a> in
             the repository is authoritative.
@@ -159,11 +159,11 @@ export function About() {
           <p style={{ color: "var(--muted)" }}>
             <BookOpen className="mr-1 inline h-4 w-4" aria-hidden />
             Back to the{" "}
-            <a href="/docs/">
+            <a href={withBase("/docs/")}>
               documentation hub
             </a>{" "}
             or the{" "}
-            <a href="/">
+            <a href={withBase("/")}>
               landing page
             </a>
             .

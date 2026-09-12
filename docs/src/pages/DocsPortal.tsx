@@ -10,7 +10,7 @@ import {
   SlidersHorizontal,
   Sparkles,
 } from "lucide-react";
-import { DOC_PAGES, SITE } from "../data/pages";
+import { DOC_PAGES, SITE, withBase } from "../data/pages";
 import { DotPattern, GlowOrb } from "../components/magicui";
 
 const PAGE_ICONS: Record<string, typeof BookOpen> = {
@@ -54,7 +54,7 @@ export function DocsPortal() {
             return (
               <a
                 key={p.id}
-                href={p.path}
+                href={withBase(p.path)}
                 className="doc-card group no-underline"
                 style={{ color: "inherit" }}
               >
@@ -82,7 +82,7 @@ export function DocsPortal() {
           })}
 
           <a
-            href="/examples/"
+            href={withBase("/examples/")}
             className="doc-card group no-underline"
             style={{ color: "inherit" }}
           >
@@ -108,7 +108,7 @@ export function DocsPortal() {
           </a>
 
           <a
-            href="/license/"
+            href={withBase("/license/")}
             className="doc-card group no-underline"
             style={{ color: "inherit" }}
           >

@@ -1,6 +1,6 @@
 import { DocsShell } from "../components/DocsShell";
 import { CodeBlock } from "../components/CodeBlock";
-import { type Heading } from "../data/pages";
+import { withBase, type Heading } from "../data/pages";
 
 const HEADINGS: Heading[] = [
   { id: "overview", label: "Overview", level: 2 },
@@ -706,7 +706,7 @@ export function Configuration() {
       </table>
       <p>
         The sixteen default curses and their values are catalogued on the{" "}
-        <a href="/docs/curses/">Curses page</a>.
+        <a href={withBase("/docs/curses/")}>Curses page</a>.
       </p>
 
       <h2 id="fallback">fallback</h2>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SiteHeader } from "./components/Header";
 import { SiteFooter } from "./components/Footer";
 import { Palette } from "./components/Palette";
-import { pageIdForPath } from "./data/pages";
+import { pageIdForPath, stripBase } from "./data/pages";
 import { Landing } from "./pages/Landing";
 import { DocsPortal } from "./pages/DocsPortal";
 import { Examples } from "./pages/Examples";
@@ -16,7 +16,7 @@ import { License } from "./pages/License";
 
 /** Route by pathname: every route ships its own index.html, so direct refresh works. */
 export default function App() {
-  const pathname = window.location.pathname;
+  const pathname = stripBase(window.location.pathname);
   const pageId = pageIdForPath(pathname);
   const [paletteOpen, setPaletteOpen] = useState(false);
 

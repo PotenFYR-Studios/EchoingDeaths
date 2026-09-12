@@ -1,4 +1,4 @@
-import { SITE } from "../data/pages";
+import { SITE, withBase } from "../data/pages";
 
 /** Full-bleed 3-zone footer per SPEC 5.2. */
 export function SiteFooter() {
@@ -62,16 +62,16 @@ export function SiteFooter() {
               Modrinth
             </a>
             <a
-              href="/examples/"
+              href={withBase("/examples/")}
               className="no-underline transition-colors hover:text-white"
             >
               Examples
             </a>
-            <a href="/docs/" className="no-underline" style={{ color: "#a78bfa" }}>
+            <a href={withBase("/docs/")} className="no-underline" style={{ color: "#a78bfa" }}>
               Docs
             </a>
             <a
-              href="/license/"
+              href={withBase("/license/")}
               className="no-underline transition-colors hover:text-white"
             >
               License

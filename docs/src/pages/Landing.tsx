@@ -7,7 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { CURSES, FALLBACK_CURSE } from "../data/curses";
-import { SITE } from "../data/pages";
+import { SITE, withBase } from "../data/pages";
 import { CurseCard } from "../components/CurseCard";
 import { CodeBlock } from "../components/CodeBlock";
 import { DotPattern, GlowOrb, Marquee, Meteors, NumberTicker } from "../components/magicui";
@@ -93,7 +93,7 @@ export function Landing() {
             <a className="btn btn-primary" href={SITE.modrinth} target="_blank" rel="noopener">
               <Download className="h-4 w-4" /> Get it on Modrinth
             </a>
-            <a className="btn btn-ghost" href="/docs/">
+            <a className="btn btn-ghost" href={withBase("/docs/")}>
               Read the docs
             </a>
           </div>
@@ -173,7 +173,7 @@ export function Landing() {
                 {FALLBACK_CURSE.durationSeconds}s.
               </p>
               <a
-                href="/docs/curses/"
+                href={withBase("/docs/curses/")}
                 className="ml-auto text-[0.83em] no-underline"
                 style={{ color: "#c4b5fd" }}
               >
@@ -236,7 +236,7 @@ export function Landing() {
                 <code>/echoingdeaths test LAVA</code> to feel one yourself.
               </li>
             </ol>
-            <a className="btn btn-ghost mt-6" href="/docs/getting-started/">
+            <a className="btn btn-ghost mt-6" href={withBase("/docs/getting-started/")}>
               Full installation guide
             </a>
           </div>

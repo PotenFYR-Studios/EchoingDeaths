@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DocsShell } from "../components/DocsShell";
 import { AccordionItem } from "../components/magicui";
-import { SITE, type Heading } from "../data/pages";
+import { SITE, withBase, type Heading } from "../data/pages";
 
 const HEADINGS: Heading[] = [{ id: "faq", label: "Frequently asked questions", level: 2 }];
 
@@ -47,7 +47,7 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
         named after any Bukkit <code>DamageCause</code> enum (for example{" "}
         <code>HOT_FLOOR</code>, <code>DRAGON_BREATH</code> or{" "}
         <code>PROJECTILE</code>), reload, and that death starts cursing. See{" "}
-        <a href="/docs/curses/">Curses</a>.
+        <a href={withBase("/docs/curses/")}>Curses</a>.
       </>
     ),
   },

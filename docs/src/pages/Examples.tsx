@@ -1,6 +1,6 @@
 import { CodeBlock } from "../components/CodeBlock";
 import { GlowOrb, DotPattern } from "../components/magicui";
-import { SITE } from "../data/pages";
+import { SITE, withBase } from "../data/pages";
 
 /** /examples: copy-paste snippets built from the real default config. */
 export function Examples() {
@@ -111,8 +111,8 @@ export function Examples() {
           />
           <p>
             More in the{" "}
-            <a href="/docs/configuration/">configuration reference</a> and the{" "}
-            <a href="/docs/commands-permissions/">
+            <a href={withBase("/docs/configuration/")}>configuration reference</a> and the{" "}
+            <a href={withBase("/docs/commands-permissions/")}>
               commands &amp; permissions
             </a>{" "}
             page, or grab the jar from{" "}

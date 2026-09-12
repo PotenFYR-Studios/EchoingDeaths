@@ -2,7 +2,7 @@ import { DocsShell } from "../components/DocsShell";
 import { CodeBlock } from "../components/CodeBlock";
 import { CurseCard } from "../components/CurseCard";
 import { CURSES, FALLBACK_CURSE } from "../data/curses";
-import { type Heading } from "../data/pages";
+import { withBase, type Heading } from "../data/pages";
 
 const HEADINGS: Heading[] = [
   { id: "how-curses-work", label: "How curses work", level: 2 },
@@ -140,7 +140,7 @@ export function Curses() {
         {FALLBACK_CURSE.potionEffects.join(" and ").toLowerCase()} for{" "}
         {FALLBACK_CURSE.durationSeconds} seconds. Edit the <code>fallback</code>{" "}
         section to change what unmapped deaths feel like; see{" "}
-        <a href="/docs/configuration/">Configuration</a>.
+        <a href={withBase("/docs/configuration/")}>Configuration</a>.
       </p>
     </DocsShell>
   );

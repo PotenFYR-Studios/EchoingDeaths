@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { DOC_PAGES, SITE, type SearchEntry } from "../data/pages";
+import { DOC_PAGES, SITE, stripBase, withBase, type SearchEntry } from "../data/pages";
 
 /** Search index: every doc page + its on-page sections. */
 function buildIndex(): SearchEntry[] {
@@ -98,11 +98,12 @@ export function Palette({ open, onClose }: { open: boolean; onClose: () => void 
 
   const go = (hit: SearchEntry) => {
     onClose();
-    const url =
-      hit.kind === "section" ? `${hit.pagePath}#${hit.headingId}` : hit.pagePath;
+    const url = withBase(
+      hit.kind === "section" ? `${hit.pagePath}#${hit.headingId}` : hit.pagePath,
+    );
     if (
-      location.pathname === hit.pagePath ||
-      location.pathname === hit.pagePath.replace(/\/$/, "")
+      stripBase(location.pathname) === hit.pagePath ||
+      stripBase(location.pathname) === hit.pagePath.replace(/\/$/, "")
     ) {
       document.getElementById(hit.headingId ?? "")?.scrollIntoView({ behavior: "smooth" });
     } else {

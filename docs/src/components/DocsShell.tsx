@@ -4,6 +4,7 @@ import {
   DOC_PAGES,
   SITE,
   neighborsOf,
+  withBase,
   type Heading,
 } from "../data/pages";
 
@@ -71,7 +72,7 @@ export function DocsShell({
               return (
                 <a
                   key={d.id}
-                  href={d.path}
+                  href={withBase(d.path)}
                   aria-current={active ? "page" : undefined}
                   className={`block rounded-lg px-3 py-1.5 text-[13px] no-underline transition-colors ${
                     active
@@ -100,7 +101,7 @@ export function DocsShell({
         </button>
 
         <nav aria-label="Breadcrumb" className="mono-label mb-3">
-          <a href="/docs/" className="transition-colors hover:text-white">
+          <a href={withBase("/docs/")} className="transition-colors hover:text-white">
             Docs
           </a>
           <span className="mx-1.5" aria-hidden>
@@ -114,7 +115,7 @@ export function DocsShell({
           <nav className="mt-12 flex justify-between gap-4" aria-label="Pagination">
             {prev ? (
               <a
-                href={prev.path}
+                href={withBase(prev.path)}
                 className="flex-1 rounded-xl border border-line-light bg-white/[0.02] p-4 no-underline transition-all hover:-translate-y-0.5 hover:border-brand-violet/50"
               >
                 <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "var(--faint)" }}>
@@ -127,7 +128,7 @@ export function DocsShell({
             )}
             {next ? (
               <a
-                href={next.path}
+                href={withBase(next.path)}
                 className="flex-1 rounded-xl border border-line-light bg-white/[0.02] p-4 text-right no-underline transition-all hover:-translate-y-0.5 hover:border-brand-pink/50"
               >
                 <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "var(--faint)" }}>
@@ -181,7 +182,7 @@ export function DocsShell({
                 {DOC_PAGES.filter((d) => d.group === g).map((d) => (
                   <a
                     key={d.id}
-                    href={d.path}
+                    href={withBase(d.path)}
                     className={`block rounded-lg px-3 py-1.5 text-[13px] no-underline ${
                       d.id === pageId
                         ? "bg-brand-violet/15 text-white"
