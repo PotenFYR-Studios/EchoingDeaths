@@ -529,19 +529,6 @@ body::before {
   animation: ed-hero-in 0.55s ease both;
 }
 
-.pulse-dot {
-  animation: ed-pulse 3s ease-in-out infinite;
-}
-@keyframes ed-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.45;
-  }
-}
-
 /* ------------------------------------------------ reduced motion (SPEC §7) */
 @media (prefers-reduced-motion: reduce) {
   *,
