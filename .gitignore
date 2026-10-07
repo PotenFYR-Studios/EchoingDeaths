@@ -121,3 +121,6 @@ CLAUDE.md
 # Docs site (docs/) build artifacts
 docs/node_modules/
 docs/dist/
+
+# TypeScript incremental build info
+*.tsbuildinfo
