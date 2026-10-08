@@ -46,7 +46,7 @@ Content of note:
   `src/main/resources/config.yml`; **keep them in sync** when changing the
   default config
 - `docs/vite.config.ts` holds the per-route SEO table that
-  `docs/scripts/emit-pages.mjs` stamps into `dist/<route>/index.html`
+  `docs/scripts/emit-pages.mjs` stamps into `dist/<route>/index`
 - The production bundle is served from `docs/dist/`; never commit that
   directory
 

@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://modrinth.com/plugin/echoing-deaths"><img src="https://img.shields.io/badge/Modrinth-echoing--deaths-1bd96a?style=for-the-badge&logo=modrinth&logoColor=white&labelColor=1c1e26" alt="Modrinth"/></a>
-  <a href="https://echoingdeaths.docs.potenfyr.in"><img src="https://img.shields.io/badge/Docs-echoingdeaths.docs.potenfyr.in-8b5cf6?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26" alt="Docs"/></a>
+  <a href="https:/docs.potenfyr.in/EchoingDeaths"><img src="https://img.shields.io/badge/https:/docs.potenfyr.in/EchoingDeaths-8b5cf6?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26" alt="Docs"/></a>
   <a href="https://discord.com/invite/zUaN2FPBec"><img src="https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=1c1e26" alt="Discord"/></a>
   <a href="https://github.com/PotenFYR-Studios/EchoingDeaths"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=1c1e26" alt="GitHub"/></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0%20%2B%20Commons%20Clause-f97316?style=for-the-badge&logo=apache&logoColor=white&labelColor=1c1e26" alt="License"/></a>
@@ -36,18 +36,18 @@
 3. Restart the server: `plugins/EchoingDeaths/config.yml` is generated on first boot
 4. Tune the config, then run `/echoingdeaths reload`
 
-Works on **Spigot**, **Paper** and **Purpur**, Minecraft **1.21+** (`api-version: '1.21'`, built against the Spigot 1.21.8 API, Java 21). Full guide: [Getting Started](https://echoingdeaths.docs.potenfyr.in/docs/getting-started/).
+Works on **Spigot**, **Paper** and **Purpur**, Minecraft **1.21+** (`api-version: '1.21'`, built against the Spigot 1.21.8 API, Java 21). Full guide: [Getting Started](https:/docs.potenfyr.in/EchoingDeaths/getting-started/).
 
 ## 📖 Documentation
 
-Full documentation lives at **[echoingdeaths.docs.potenfyr.in](https://echoingdeaths.docs.potenfyr.in)**:
+Full documentation lives at **[https:/docs.potenfyr.in/EchoingDeaths](https:/docs.potenfyr.in/EchoingDeaths)**:
 
 | Page | Contents |
 | --- | --- |
-| [Curses](https://echoingdeaths.docs.potenfyr.in/docs/curses/) | Every curse: trigger cause, effects, duration, amplifier |
-| [Configuration](https://echoingdeaths.docs.potenfyr.in/docs/configuration/) | Complete `config.yml` reference |
-| [Commands & Permissions](https://echoingdeaths.docs.potenfyr.in/docs/commands-permissions/) | `/echoingdeaths` usage and permission nodes |
-| [FAQ](https://echoingdeaths.docs.potenfyr.in/docs/faq/) | Common questions and troubleshooting |
+| [Curses](https:/docs.potenfyr.in/EchoingDeaths/curses/) | Every curse: trigger cause, effects, duration, amplifier |
+| [Configuration](https:/docs.potenfyr.in/EchoingDeaths/configuration/) | Complete `config.yml` reference |
+| [Commands & Permissions](https:/docs.potenfyr.in/EchoingDeaths/commands-permissions/) | `/echoingdeaths` usage and permission nodes |
+| [FAQ](https:/docs.potenfyr.in/EchoingDeaths/faq/) | Common questions and troubleshooting |
 
 ## 🛠 Commands
 
@@ -80,7 +80,7 @@ FIRE:
     - HUNGER
 ```
 
-See the [Configuration Reference](https://echoingdeaths.docs.potenfyr.in/docs/configuration/) for every key and the [Curses page](https://echoingdeaths.docs.potenfyr.in/docs/curses/) for all default values.
+See the [Configuration Reference](https:/docs.potenfyr.in/EchoingDeaths/configuration/) for every key and the [Curses page](https:/docs.potenfyr.in/EchoingDeaths/curses/) for all default values.
 
 ## 🏗 Building from source
 
